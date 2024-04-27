@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+
+<partial name="~/Views/Partial/_HeadPartial.cshtml" />
+
+<body>
+    <!-- header-section-starts-here -->
+    <partial name="~/Views/Partial/_NavbarPartial.cshtml" />
+    <!-- header-section-ends-here -->
+    <partial name="~/Views/Partial/_BreakingNewsPartial.cshtml" />
+    <!-- content-section-starts-here -->
+    @RenderBody()
+    <!-- content-section-ends-here -->
+    <!-- footer-section-starts-here -->
+    <partial name="~/Views/Partial/_FooterPartial.cshtml" />
+    <!-- footer-section-ends-here -->
+    <partial name="~/Views/Partial/_ScriptPartial.cshtml" />
+
+</body>
+
+</html>

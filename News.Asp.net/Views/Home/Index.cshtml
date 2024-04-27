@@ -1,0 +1,152 @@
+﻿@model IEnumerable<DTO.EntityDTO.PostDTO>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-body">
+    <div class="wrap">
+        <div class="col-md-8 content-left">
+
+            <partial name="~/Views/Partial/_SliderPartial.cshtml" />
+
+            <div class="articles">
+                <header>
+                    <h3 class="title-head">All around the world</h3>
+                </header>
+                @foreach (var item in Model)
+                {
+                    <div class="article">
+                        <div class="article-left">
+                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                                <img src="@item.Image1">
+                            </a>
+                        </div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <p>
+                                    Tarix: @item.Time.ToString("dd-MMMM-yyyy") <a class="span_link" href="#">
+                                        <span class="glyphicon glyphicon-comment"></span>0
+                                    </a><a class="span_link"
+                                           href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#">
+                                        <span class="glyphicon glyphicon-thumbs-up"></span>52
+                                    </a>
+                                </p>
+                               @if (item.Title.Length>50)
+                                {
+                                    <a class="title" href="single.html">
+                                        @item.Title.Remove(50)...
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="title" href="single.html">
+                                        @item.Title
+                                    </a>
+                                }
+                            </div>
+                            <div class="article-text">
+                                @if (item.Text.Length>250)
+                                {
+                                    <p>
+                                        @item.Text.Remove(250)...
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        @item.Text
+                                    </p>
+
+                                }
+                                <a href="single.html"><img src="~/web/images/more.png" alt="" /></a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="sports-top">
+                <div class="s-grid-left">
+                    <div class="cricket">
+                        <header>
+                            <h3 class="title-head">Business</h3>
+                        </header>
+                        <div class="s-grid-small">
+                            <div class="sc-image">
+                                <a href="single.html"><img src="images/bus4.jpg" alt="" /></a>
+                            </div>
+                            <div class="sc-text">
+                                <h6>Lorem Ipsum</h6>
+                                <a class="power" href="single.html">It is a long established fact that a reader</a>
+                                <p class="date">On Jul 19, 2015</p>
+                                <a class="reu" href="single.html"><img src="images/more.png" alt="" /></a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-grid-right">
+                    <div class="cricket">
+                        <header>
+                            <h3 class="title-popular">Technology</h3>
+                        </header>
+
+                        <div class="s-grid-small">
+                            <div class="sc-image">
+                                <a href="single.html"><img src="images/tec4.jpg" alt="" /></a>
+                            </div>
+                            <div class="sc-text">
+                                <h6>Lorem Ipsum</h6>
+                                <a class="power" href="single.html">It is a long established fact that a reader</a>
+                                <p class="date">On Jul 19, 2015</p>
+                                <a class="reu" href="single.html"><img src="images/more.png" alt="" /></a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-4 side-bar">
+
+            <div class="secound_half">
+                <div class="popular-news">
+                    <div class="popular-grids">
+                        <div class="popular-grid">
+                            <a href="single.html">
+                                <img src="images/popular-4.jpg" alt=""
+                                     style="height: 440px;" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="popular-news">
+                    <header>
+                        <h3 class="title-popular">popular News</h3>
+                    </header>
+                    <div class="popular-grid">
+                        <a href="single.html"><img src="images/popular-4.jpg" alt="" /></a>
+                        <a class="title" href="single.html">
+                            It is a long established fact that a reader will be
+                            distracted
+                        </a>
+                        <p>
+                            On Aug 31, 2015 <a class="span_link" href="#">
+                                <span class="glyphicon glyphicon-comment"></span>0
+                            </a><a class="span_link"
+                                   href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
