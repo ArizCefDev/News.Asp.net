@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DTO.EntityDTO.PostDTO>
+
+@foreach (var item in Model)
+{
+    <div class="marquee1">
+        <a class="breaking" href="single.html">
+            >> @item.Title
+        </a>
+    </div>
+
+}

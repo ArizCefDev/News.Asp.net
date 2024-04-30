@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DTO.EntityDTO.PostDTO>
+<div class="callbacks_wrap">
+	<ul class="rslides" id="slider">
+		@foreach (var item in Model)
+		{
+			<li>
+				<img src="@item.Image1" alt="">
+				<div class="caption">
+					<a href="single.html">
+						@item.Title
+					</a>
+				</div>
+			</li>
+
+		}
+	</ul>
+</div>

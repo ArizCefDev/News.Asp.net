@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DTO.EntityDTO.CategoryDTO>
+<ul class="nav navbar-nav">
+	<li class="active">
+		<a asp-controller="Home" asp-action="Index">Əsas xəbərlər</a>
+	</li>
+	@foreach (var item in Model)
+	{
+		<li><a asp-controller="Home" asp-action="Page">@item.Name</a></li>
+	}
+	<div class="clearfix"></div>
+</ul>
