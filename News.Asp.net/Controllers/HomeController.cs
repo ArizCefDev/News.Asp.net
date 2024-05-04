@@ -20,7 +20,7 @@ namespace News.Asp.net.Controllers
 		public IActionResult Index()
         {
             var values = _post.GetAll();
-            return View(values.OrderByDescending(row=>row.Id).Take(4));
+            return View(values.OrderByDescending(row=>row.Id));
         }
 
 		public IActionResult Page()
@@ -29,6 +29,15 @@ namespace News.Asp.net.Controllers
 			return View(values);
 		}
 
+        public IActionResult Detail(int id)
+        {
+			ViewBag.cat = _dbContext.Categories.ToList().Skip(6).Take(3);
+			ViewBag.allcat = _dbContext.Categories.ToList();
 
-	}
+			var values = _post.GetByID(id);
+            return View(values);
+        }
+
+
+    }
 }

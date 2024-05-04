@@ -11,9 +11,9 @@
 
             <div class="articles">
                 <header>
-                    <h3 class="title-head">All around the world</h3>
+                    <h3 class="title-head">Yeni Xəbərlər</h3>
                 </header>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Take(4))
                 {
                     <div class="article">
                         <div class="article-left">
@@ -68,50 +68,7 @@
 
             </div>
 
-            <div class="sports-top">
-                <div class="s-grid-left">
-                    <div class="cricket">
-                        <header>
-                            <h3 class="title-head">Business</h3>
-                        </header>
-                        <div class="s-grid-small">
-                            <div class="sc-image">
-                                <a href="single.html"><img src="images/bus4.jpg" alt="" /></a>
-                            </div>
-                            <div class="sc-text">
-                                <h6>Lorem Ipsum</h6>
-                                <a class="power" href="single.html">It is a long established fact that a reader</a>
-                                <p class="date">On Jul 19, 2015</p>
-                                <a class="reu" href="single.html"><img src="images/more.png" alt="" /></a>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="s-grid-right">
-                    <div class="cricket">
-                        <header>
-                            <h3 class="title-popular">Technology</h3>
-                        </header>
-
-                        <div class="s-grid-small">
-                            <div class="sc-image">
-                                <a href="single.html"><img src="images/tec4.jpg" alt="" /></a>
-                            </div>
-                            <div class="sc-text">
-                                <h6>Lorem Ipsum</h6>
-                                <a class="power" href="single.html">It is a long established fact that a reader</a>
-                                <p class="date">On Jul 19, 2015</p>
-                                <a class="reu" href="single.html"><img src="images/more.png" alt="" /></a>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+            @await Component.InvokeAsync("NewsList")
         </div>
         <div class="col-md-4 side-bar">
 
@@ -120,7 +77,7 @@
                     <div class="popular-grids">
                         <div class="popular-grid">
                             <a href="single.html">
-                                <img src="images/popular-4.jpg" alt=""
+                                <img src="~/img/ads.jpg" alt=""
                                      style="height: 440px;" />
                             </a>
                         </div>
@@ -128,9 +85,9 @@
                 </div>
                 <div class="popular-news">
                     <header>
-                        <h3 class="title-popular">popular News</h3>
+                        <h3 class="title-popular">populyar Xəbərlər</h3>
                     </header>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Skip(4).Take(5))
                     {
 
                         <div class="popular-grid">
