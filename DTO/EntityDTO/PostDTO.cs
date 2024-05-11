@@ -18,5 +18,8 @@ namespace DTO.EntityDTO
         public string? TlgURL { get; set; }
         public string? PostURL { get; set; }
 
-    }
+		public CategoryDTO? CategoryDTO { get; set; }
+		public virtual List<CommentDTO>? CommentDTOs { get; set; }
+
+	}
 }

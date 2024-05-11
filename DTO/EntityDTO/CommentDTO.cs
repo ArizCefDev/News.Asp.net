@@ -11,6 +11,8 @@ namespace DTO.EntityDTO
         public string? UserName { get; set; }
         public string? Text { get; set; }
         public string? ImageURL { get; set; }
-      
-    }
+		public int PostID { get; set; }
+		public PostDTO? PostDTO { get; set; }
+
+	}
 }

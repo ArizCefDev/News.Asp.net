@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DTO.EntityDTO.CommentDTO>
+
+<div class="response">
+	<h4>Şərh sayı : @ViewBag.count</h4>
+	@foreach (var item in Model)
+	{
+		@if (item.PostID == ViewBag.postID)
+		{
+			<div class="media response-info">
+				<div class="media-left response-text-left">
+					<a asp-controller="Home" asp-action="Detail" asp-route-id="@item.PostID">
+						<img class="media-object" src="@item.ImageURL" alt="" />
+					</a>
+					<h5><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.PostID">@item.UserName</a></h5>
+				</div>
+				<div class="media-body response-text-right">
+					<p>
+						@item.Text
+					</p>
+					<ul>
+						<li>@item.Time.ToString("dd-MMM-yyyy")</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		}
+	}
+</div>
+	
+	

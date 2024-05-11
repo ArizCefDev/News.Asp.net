@@ -8,29 +8,29 @@
 <div class="main-body">
 	<div class="wrap">
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li class="active">Technology</li>
+			<li><a asp-controller="Home" asp-action="Index">Əsas xəbərlər</a></li>
+			<li class="active">@ViewBag.cat</li>
 		</ol>
 		<div class="col-md-12 content-left">
 			<div class="articles sports">
 				<header>
-					<h3 class="title-head">Technology</h3>
+					<h3 class="title-head">@ViewBag.cat</h3>
 				</header>
 				<div class="technology">
 					<div class="tech-main">
 						@foreach (var item in Model)
 						{
 							<div class="tech">
-								<a href="single.html"><img src="@item.Image1" alt="" /></a>
+								<a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><img src="@item.Image1" alt="" /></a>
 								@if (item.Title.Length > 60)
 								{
-									<a class="power" href="single.html">
+									<a class="power" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
 										@item.Title.Remove(60)...
 									</a>
 								}
 								else
 								{
-									<a class="power" href="single.html">
+									<a class="power" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
 										@item.Title
 									</a>
 								}

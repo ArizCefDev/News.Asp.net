@@ -6,7 +6,7 @@
 			<li>
 				<img src="@item.Image1" alt="">
 				<div class="caption">
-					<a href="single.html">
+					<a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
 						@item.Title
 					</a>
 				</div>

@@ -16,5 +16,12 @@ namespace Business.Concrete
         public PostService(IMapper mapper, AppDbContext context) : base(mapper, context)
         {
         }
+
+        public IEnumerable<PostDTO> GetCategoryPostId(int id)
+        {
+            var post = _dbSet.Where(x => x.CategoryID == id).ToList();
+            var rsdto=_mapper.Map<IEnumerable<PostDTO>>(post);
+            return rsdto;
+        }
     }
 }

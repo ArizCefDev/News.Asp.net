@@ -24,22 +24,22 @@
                         <div class="article-right">
                             <div class="article-title">
                                 <p>
-                                    Tarix: @item.Time.ToString("dd-MMMM-yyyy") <a class="span_link" href="#">
+                                    Tarix: @item.Time.ToString("dd-MMMM-yyyy") <a class="span_link" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                         <span class="glyphicon glyphicon-comment"></span>0
                                     </a><a class="span_link"
-                                           href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#">
+                                           asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                         <span class="glyphicon glyphicon-thumbs-up"></span>52
                                     </a>
                                 </p>
                                 @if (item.Title.Length > 50)
                                 {
-                                    <a class="title" href="single.html">
+                                    <a class="title" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                         @item.Title.Remove(50)...
                                     </a>
                                 }
                                 else
                                 {
-                                    <a class="title" href="single.html">
+                                    <a class="title" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                         @item.Title
                                     </a>
                                 }
@@ -58,7 +58,7 @@
                                     </p>
 
                                 }
-                                <a href="single.html"><img src="~/web/images/more.png" alt="" /></a>
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><img src="~/web/images/more.png" alt="" /></a>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                 <div class="popular-news">
                     <div class="popular-grids">
                         <div class="popular-grid">
-                            <a href="single.html">
+                            <a asp-controller="Home" asp-action="Index">
                                 <img src="~/img/ads.jpg" alt=""
                                      style="height: 440px;" />
                             </a>
@@ -91,24 +91,24 @@
                     {
 
                         <div class="popular-grid">
-                            <a href="single.html"><img src="@item.Image1" alt="" /></a>
+                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><img src="@item.Image1" alt="" /></a>
                             @if (item.Title.Length > 50)
                             {
-                                <a class="title" href="single.html">
+                                <a class="title" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                     @item.Title.Remove(50)...
                                 </a>
                             }
                             else
                             {
-                                <a class="title" href="single.html">
+                                <a class="title" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                     @item.Title
                                 </a>
                             }
                             <p>
-                                Tarix: @item.Time.ToString("dd-MMMM-yyyy") <a class="span_link" href="#">
+                                Tarix: @item.Time.ToString("dd-MMMM-yyyy") <a class="span_link" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                     <span class="glyphicon glyphicon-comment"></span>0
                                 </a><a class="span_link"
-                                       href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#">
+                                       asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                     <span class="glyphicon glyphicon-thumbs-up"></span>52
                                 </a>
                             </p>

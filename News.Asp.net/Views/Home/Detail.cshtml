@@ -66,67 +66,48 @@
 				</ul>
 			</div>
 			<div class="col-md-6 content-left single-post">
+				<div class="blog-posts" style="margin-bottom:50px;">
+					<img src="@Model.Image1"  style="width:100%"/>
+				</div>
 				<div class="blog-posts">
 					<h3 class="post">@Model.Title</h3>
 					<div class="last-article">
 						<p class="artext">
 							@Model.Text
 						</p>
-						
+
 						<ul class="categories">
 							@foreach (var item in ViewBag.cat)
 							{
-								<li><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></li>
+								<li><a asp-controller="Home" asp-action="Page" asp-route-id="@item.Id">@item.Name</a></li>
 							}
 						</ul>
 						<div class="clearfix"></div>
-						<div class="response">
-							<h4>Responses</h4>
-							<div class="media response-info">
-								<div class="media-left response-text-left">
-									<a asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id">
-										<img class="media-object" src="images/c3.jpg" alt="" />
-									</a>
-									<h5><a asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id">Username</a></h5>
-								</div>
-								<div class="media-body response-text-right">
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-										sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									</p>
-									<ul>
-										<li>June 21, 2015</li>
-										<li><a href="single.html">Reply</a></li>
-									</ul>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
+						@await Component.InvokeAsync("CommentList")
 						<div class="coment-form">
-							<h4>Leave your comment</h4>
-							<form>
-								<input type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-								<input type="email" value="Email (will not be published)*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email (will not be published)*';}" required="">
-								<input type="text" value="Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Website';}" required="">
-								<textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
-								<input type="submit" value="Submit Comment">
+							<h4>Şərh yazın.</h4>
+							<form asp-controller="Home" asp-action="CommentAdd" method="post">
+								<span>@ViewBag.error</span>
+								<input type="text" value="İstifadəçi adınızı daxil edin..." name="UserName" >
+								<input type="hidden" value="@Model.Id" name="PostID">
+								<textarea value="Şərhinizi daxil edin..." name="Text">Şərhinizi daxil edin...</textarea>
+								<input type="submit" value="Paylaşin">
 							</form>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
-
 			</div>
 			<div class="col-md-4 side-bar">
 				<div class="first_half">
 					<div class="categories">
 						<header>
-							<h3 class="side-title-head">Categories</h3>
+							<h3 class="side-title-head">Kateqoriyalar</h3>
 						</header>
 						<ul>
 							@foreach (var item in ViewBag.allcat)
 							{
-								<li><a asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id">@item.Name</a></li>
+								<li><a asp-controller="Home" asp-action="Page" asp-route-id="@item.Id">@item.Name</a></li>
 							}
 						</ul>
 					</div>

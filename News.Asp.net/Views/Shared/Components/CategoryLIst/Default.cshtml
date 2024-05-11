@@ -3,9 +3,12 @@
 	<li class="active">
 		<a asp-controller="Home" asp-action="Index">Əsas xəbərlər</a>
 	</li>
+	<li class="active">
+		<a asp-controller="Admin" asp-action="Index">Admin</a>
+	</li>
 	@foreach (var item in Model)
 	{
-		<li><a asp-controller="Home" asp-action="Page">@item.Name</a></li>
+		<li><a asp-controller="Home" asp-action="Page" asp-route-id="@item.Id">@item.Name</a></li>
 	}
 	<div class="clearfix"></div>
 </ul>
