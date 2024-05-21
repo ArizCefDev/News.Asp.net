@@ -1,11 +1,21 @@
-﻿@model IEnumerable<DTO.EntityDTO.CategoryDTO>
+﻿@using Helper.Constants;
+@model IEnumerable<DTO.EntityDTO.CategoryDTO>
 <ul class="nav navbar-nav">
 	<li class="active">
 		<a asp-controller="Home" asp-action="Index">Əsas xəbərlər</a>
 	</li>
-	<li class="active">
-		<a asp-controller="Admin" asp-action="Index">Admin</a>
-	</li>
+	@if (User.IsInRole(RoleKeywords.AdminRole))
+	{
+		<li class="active">
+			<a asp-controller="Admin" asp-action="Index">Admin</a>
+		</li>
+	}
+    @if (User.IsInRole(RoleKeywords.RedaktorRole))
+    {
+		<li class="active">
+			<a asp-controller="Admin" asp-action="Post">Postlar</a>
+		</li>
+	}
 	@foreach (var item in Model)
 	{
 		<li><a asp-controller="Home" asp-action="Page" asp-route-id="@item.Id">@item.Name</a></li>

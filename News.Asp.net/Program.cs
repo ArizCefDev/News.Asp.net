@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Business.Map;
 using DataAccess.MyContext;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,31 @@ builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IPrivacy, PrivacyService>();
 builder.Services.AddScoped<ISiteAbout, SiteAboutService>();
 builder.Services.AddScoped<ISocialMedia, SocialMediaService>();
+builder.Services.AddScoped<IUser, UserService>();
+
+
+//Cookie
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+  .AddCookie((opt =>
+  {
+      //opt.LoginPath = "/SignIn";
+      opt.Cookie.HttpOnly = true;
+      opt.Cookie.Name = "AuthCookie";
+      opt.Cookie.MaxAge = TimeSpan.FromDays(10);
+
+      opt.Events = new CookieAuthenticationEvents
+      {
+          OnRedirectToLogin = x =>
+          {
+              x.HttpContext.Response.StatusCode = 401;
+              return Task.CompletedTask;
+          }
+      };
+  }));
+
 
 
 var app = builder.Build();
@@ -47,6 +73,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//cookie
+app.UseSession();
+app.UseAuthentication();
+///
 
 app.UseAuthorization();
 

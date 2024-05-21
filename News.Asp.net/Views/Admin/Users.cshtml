@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DTO.EntityDTO.UserDTO>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Istifadeciler</h2>
+        </div>
+        <div class="agile-tables">
+            <div class="w3l-table-info">
+               
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Foto</th>
+                            <th>İstifadəçi adı</th>
+                            <th>Rolu</th>
+                            <th>Redaktə</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td><img src="~/WebImages/@item.ImageURL" style="width:200px; height:auto;" /></td>
+                                <td>@item.UserName</td>
+                                <td>@item.RoleId</td>
+                                <td>
+                                    <a asp-controller="Admin" asp-action="UsersUpdate" asp-route-id="@item.ID"
+                                       class="btn btn-primary" style="background-color:green;">
+                                        Redaktə
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-controller="Admin" asp-action="UsersDelete" asp-route-id="@item.ID"
+                                       class="btn btn-primary" style="background-color:red;">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+    </div>
+</div>
+
+

@@ -18,7 +18,7 @@
                     <div class="article">
                         <div class="article-left">
                             <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                                <img src="@item.Image1">
+                                <img src="~/WebImages/@item.Image2">
                             </a>
                         </div>
                         <div class="article-right">
@@ -91,7 +91,7 @@
                     {
 
                         <div class="popular-grid">
-                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><img src="@item.Image1" alt="" /></a>
+                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"><img src="~/WebImages/@item.Image2" alt="" /></a>
                             @if (item.Title.Length > 50)
                             {
                                 <a class="title" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">

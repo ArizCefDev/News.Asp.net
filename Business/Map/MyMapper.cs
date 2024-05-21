@@ -29,7 +29,8 @@ namespace Business.Map
             CreateMap<Message, MessageDTO>();
 
             CreateMap<PostDTO, Post>();
-            CreateMap<Post, PostDTO>();
+            CreateMap<Post, PostDTO>()
+                .ForMember(x=>x.CategoryName, o=>o.MapFrom(c=>c.Category.Name));
 
             CreateMap<PrivacyDTO, Privacy>();
             CreateMap<Privacy, PrivacyDTO>();
@@ -39,6 +40,10 @@ namespace Business.Map
 
             CreateMap<SocialMediaDTO, SocialMedia>();
             CreateMap<SocialMedia, SocialMediaDTO>();
+
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>()
+                .ForMember(x => x.RoleName, o => o.MapFrom(c => c.Role.Name));
 
 
 

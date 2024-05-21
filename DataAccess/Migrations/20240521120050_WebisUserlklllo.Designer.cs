@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240427114406_WebMig")]
-    partial class WebMig
+    [Migration("20240521120050_WebisUserlklllo")]
+    partial class WebisUserlklllo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostID")
+                    b.Property<int?>("PostID")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -159,7 +159,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("FbURL")
@@ -189,12 +189,17 @@ namespace DataAccess.Migrations
                     b.Property<string>("TwtURL")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
                     b.Property<string>("WpURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Posts");
                 });
@@ -219,6 +224,39 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Privacies");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.Role", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Redaktor"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "User"
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entity.SiteAbout", b =>
@@ -271,13 +309,65 @@ namespace DataAccess.Migrations
                     b.ToTable("SocialMedias");
                 });
 
+            modelBuilder.Entity("DataAccess.Entity.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Age = 0,
+                            ImageURL = "men.png",
+                            PasswordHash = "w&����1Ȩ�'�s^s�����lFb\n]",
+                            RoleId = 1,
+                            Salt = "jfAzGUV+JrmnGg==",
+                            UserName = "admin"
+                        });
+                });
+
             modelBuilder.Entity("DataAccess.Entity.Comment", b =>
                 {
                     b.HasOne("DataAccess.Entity.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostID");
 
                     b.Navigation("Post");
                 });
@@ -286,11 +376,24 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entity.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryID");
+
+                    b.HasOne("DataAccess.Entity.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserID");
 
                     b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.User", b =>
+                {
+                    b.HasOne("DataAccess.Entity.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.Category", b =>
@@ -301,6 +404,16 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entity.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.Role", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.User", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

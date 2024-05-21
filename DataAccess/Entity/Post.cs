@@ -9,7 +9,7 @@ namespace DataAccess.Entity
     public class Post:Base
     {
         public string? Image1 { get; set; }
-        public string? Image2 { get; set; }
+        public string? Image2 { get; set; }//URL
         public string? Title { get; set; }
         public string? Text { get; set; }
         public string? FbURL { get; set; }
@@ -17,9 +17,12 @@ namespace DataAccess.Entity
         public string? TwtURL { get; set; }
         public string? TlgURL { get; set; }
         public string? PostURL { get; set; }
-        public int CategoryID { get; set; }
+        public int? CategoryID { get; set; }
         public Category? Category { get; set; }
-        public virtual List<Comment>? Comments { get; set; }
+
+		public int? UserID { get; set; }
+		public User? User { get; set; }
+		public virtual List<Comment>? Comments { get; set; }
 
     }
 }

@@ -44,7 +44,7 @@ namespace Business.Concrete
             return BringDto;
         }
 
-        public Bring Insert(Send dto)
+        public virtual Bring Insert(Send dto)
         {
            var ent=_mapper.Map<T>(dto);
             _dbSet.Add(ent);
